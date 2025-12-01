@@ -1,4 +1,4 @@
-DaySpark AI 
+DAYSPARK AI:
 
 A minimal, aesthetic AI-style assistant that helps you start each day with clarity and focus.
 
@@ -7,7 +7,7 @@ Inspired by modern AI dashboards, the app delivers clean UI, smooth motion, and 
 
 Built with Next.js + TypeScript, styled with TailwindCSS, and powered by Framer Motion for a polished, fluid experience.
 
- What it Does
+WHAT IT DOES:
 
 Generates dynamic “daily insights” based on what the user wants to focus on
 
@@ -19,7 +19,7 @@ Fully responsive, clean UI with a dark minimal aesthetic
 
 Built with scalable architecture: easy to plug in a real AI backend later
 
-Tech Stack
+TECH STACK:
 
 Next.js 14+ (App Router)
 
@@ -33,7 +33,7 @@ TailwindCSS 4
 
 Framer Motion 12
 
-Why I Built This
+WHY I BUILT THIS:
 
 I wanted a project that:
 
