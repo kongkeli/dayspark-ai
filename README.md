@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+DaySpark AI 
 
-## Getting Started
+A minimal, aesthetic AI-style assistant that helps you start each day with clarity and focus.
 
-First, run the development server:
+DaySpark AI transforms a simple sentence like “I want to study today” into animated, personalized insights that guide your day.
+Inspired by modern AI dashboards, the app delivers clean UI, smooth motion, and meaningful suggestions — all without requiring an actual AI model (yet).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Built with Next.js + TypeScript, styled with TailwindCSS, and powered by Framer Motion for a polished, fluid experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ What it Does
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Generates dynamic “daily insights” based on what the user wants to focus on
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Uses animated Insight Cards to deliver suggestions in a modern, AI-inspired layout
 
-## Learn More
+Includes smart prompt suggestions (chips) that fill the input and generate insights instantly
 
-To learn more about Next.js, take a look at the following resources:
+Fully responsive, clean UI with a dark minimal aesthetic
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Built with scalable architecture: easy to plug in a real AI backend later
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tech Stack
 
-## Deploy on Vercel
+Next.js 14+ (App Router)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+React 19
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+TypeScript
+
+JavaScript
+
+TailwindCSS 4
+
+Framer Motion 12
+
+Why I Built This
+
+I wanted a project that:
+
+shows strong frontend/UI engineering skills
+
+blends animation, interaction, and clean design
+
+feels like a real product, not just a tutorial
+
+can be easily extended with AI or backend features
+
+DaySpark AI is a modern portfolio-ready app that demonstrates UX thinking, component architecture, and polished frontend craft.
