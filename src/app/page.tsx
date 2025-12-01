@@ -1,65 +1,188 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import type { Insight } from "../types/insight";
+import { PromptForm } from "../components/PromptForm";
+import { PromptSuggestions } from "../components/PromptSuggestions";
+import { InsightList } from "../components/InsightList";
+
+function mockGenerateInsights(prompt: string): Insight[] {
+  const lower = prompt.toLowerCase();
+  const insights: Insight[] = [];
+
+  const push = (
+    id: string,
+    category: Insight["category"],
+    title: string,
+    description: string
+  ) => {
+    insights.push({ id, category, title, description });
+  };
+
+  // STUDY
+  if (
+    lower.includes("study") ||
+    lower.includes("exam") ||
+    lower.includes("διαβάζω")
+  ) {
+    push(
+      "study-1",
+      "study",
+      "Study in focused blocks",
+      "Try 40-minute deep focus sessions with 5–7 minute breaks."
+    );
+    push(
+      "study-2",
+      "study",
+      "Start with review",
+      "Spend 10–15 minutes reviewing yesterday’s material first."
+    );
+    push(
+      "study-3",
+      "study",
+      "Make it measurable",
+      "Define a clear study goal, like 'Finish chapter 5' instead of 'study'."
+    );
+  }
+
+  // FITNESS
+  if (
+    lower.includes("fitness") ||
+    lower.includes("gym") ||
+    lower.includes("workout")
+  ) {
+    push(
+      "fitness-1",
+      "fitness",
+      "Short but consistent training",
+      "20–30 minutes today is enough to build momentum."
+    );
+    push(
+      "fitness-2",
+      "fitness",
+      "Prepare your environment",
+      "Lay out your workout clothes or shoes now."
+    );
+    push(
+      "fitness-3",
+      "fitness",
+      "Attach the habit",
+      "Link your workout to something you already do daily."
+    );
+  }
+
+  // CODING
+  if (
+    lower.includes("coding") ||
+    lower.includes("react") ||
+    lower.includes("typescript")
+  ) {
+    push(
+      "coding-1",
+      "coding",
+      "Small experiments",
+      "Break tasks into small, testable code experiments."
+    );
+    push(
+      "coding-2",
+      "coding",
+      "Write the bug out loud",
+      "Describe the bug in plain text—it usually reveals the mistake."
+    );
+    push(
+      "coding-3",
+      "coding",
+      "Commit meaningfully",
+      "Commit after each tiny chunk of progress for clean history."
+    );
+  }
+
+  // SLEEP
+  if (
+    lower.includes("sleep") ||
+    lower.includes("tired") ||
+    lower.includes("ύπν")
+  ) {
+    push(
+      "sleep-1",
+      "sleep",
+      "Set a wind-down time",
+      "Choose a moment tonight when screens turn off completely."
+    );
+    push(
+      "sleep-2",
+      "sleep",
+      "Light ritual",
+      "10 minutes of stretching or reading improves sleep quality."
+    );
+  }
+
+  // PRODUCTIVITY (fallback)
+  if (
+    insights.length === 0 ||
+    lower.includes("productive") ||
+    lower.includes("focus")
+  ) {
+    push(
+      "prod-1",
+      "productivity",
+      "Define a finish line",
+      "Write one sentence describing what “done today” means."
+    );
+    push(
+      "prod-2",
+      "productivity",
+      "One important task first",
+      "Start with the task that will matter the most tomorrow."
+    );
+  }
+
+  return insights;
+}
 
 export default function Home() {
+  const [insights, setInsights] = useState<Insight[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [promptValue, setPromptValue] = useState("");
+
+  const handleGenerate = (prompt: string) => {
+    setLoading(true);
+    setTimeout(() => {
+      const result = mockGenerateInsights(prompt);
+      setInsights(result);
+      setLoading(false);
+    }, 600);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 px-4 py-10">
+      <div className="mx-auto max-w-3xl">
+        <header className="space-y-3">
+          <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
+            DaySpark <span className="text-indigo-400">AI</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-sm text-slate-300 md:text-base">
+            Describe what you want to focus on today — or choose one of the
+            suggestions below.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </header>
+
+        <PromptForm
+          value={promptValue}
+          onSetValue={setPromptValue}
+          onGenerate={handleGenerate}
+          loading={loading}
+        />
+
+        <PromptSuggestions
+          onSelect={(text: string) => {
+            setPromptValue(text);
+            handleGenerate(text);
+          }}
+        />
+
+        <InsightList insights={insights} />
+      </div>
+    </main>
   );
 }
